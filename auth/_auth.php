@@ -1,5 +1,5 @@
 <?php
-require_once "../config/db_conn.php";
+$conn = require_once "../config/_db_conn.php";
 
 
 
@@ -15,6 +15,7 @@ function only_auth()
 function user_exists($email)
 {
 
+    global $conn;
     $stmt = $conn->prepare("SELECT * FROM users WHERE email = ?");
     $stmt->bind_param("s", $email);
     $stmt->execute();

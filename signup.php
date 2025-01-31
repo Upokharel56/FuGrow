@@ -1,5 +1,5 @@
 <?php
-//require_once "./auth/signup.php";
+require_once "./auth/_signup.php";
 
 
 ?>
