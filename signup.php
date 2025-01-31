@@ -35,6 +35,13 @@
                 <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm your password" required="">
                 <span class="error-message" id="confirmPasswordError"></span>
             </div>
+            <div class="form-group">
+                <label for="role">Role</label>
+                <select name="role" id="role">
+                    <option value="farmer" selected>Farmer</option>
+                    <option value="vendor">Vendor</option>
+                </select>
+            </div>
             <button type="submit" class="signup-button">Sign Up</button>
             <div class="login-link">
                 <p>Already have an account? <a href="login.php">Log in</a></p>

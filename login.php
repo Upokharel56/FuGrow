@@ -1,3 +1,18 @@
+<?php
+date_default_timezone_set('Asia/Kathmandu');
+require_once "./auth/auth.php";
+$success = false;
+
+if($_SERVER["REQUEST_METHOD"]=="POST"){
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+
+    $success = verify_and_login($email,$password);
+
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,7 +20,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fugrow | Login</title>
-    <link rel="stylesheet" href="./assets/css/login.css">
+    <link rel="stylesheet" href="assets/css/login.css">
+    <!-- Boxicons -->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <!-- Toast CSS -->
+    <link rel="stylesheet" href="assets/css/toast.css" />
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 </head>
 
@@ -34,7 +53,13 @@
         </form>
     </div>
 
+    <script src="./assets/js/toast.js"></script>
     <script>
+        <?php if($success){ ?>
+                showToast("login successful","success");
+                exit();
+         <?php   } else ?> showToast("login failed","danger");
+
         // Get form and input elements
         const loginForm = document.getElementById('loginForm');
         const emailInput = document.getElementById('email');
@@ -69,10 +94,7 @@
                 return;
             }
 
-            // If validation passes, submit the form (or simulate submission)
-            alert('Login successful!');
-            // Uncomment the following line to submit the form:
-            // loginForm.submit();
+            loginForm.submit();
         });
 
         // Function to validate email format

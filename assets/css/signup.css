@@ -61,6 +61,17 @@ body {
     font-size: 14px;
     outline: none;
   }
+  .signup-form #role {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 14px;
+    outline: none;
+  }
+  .signup-form #role:focus {
+    border-color: #27ae60;
+  }
   
   .signup-form input:focus {
     border-color: #27ae60;
