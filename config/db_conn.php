@@ -6,6 +6,8 @@ $password = "";
 $database = "_fuGrow";
 
 
+global $conn;
+
 $conn = new mysqli($servername, $username, $password, $database);
 
 if ($conn->connect_error) {

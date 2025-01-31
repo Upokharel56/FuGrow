@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <?php
 date_default_timezone_set('Asia/Kathmandu');
 require_once "./auth/auth.php";
@@ -12,6 +13,10 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
 }
 
 ?>
+=======
+
+
+>>>>>>> e168fa015af0e4c4ebbb282dfb2b5a760985c862
 
 <!DOCTYPE html>
 <html lang="en">
