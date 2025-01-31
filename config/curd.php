@@ -1,6 +1,6 @@
 <?php
 
-require_once "dbcon.php";
+require_once "db_conn.php";
 
 function getData($table, $columns, $condition = "1")
 {
