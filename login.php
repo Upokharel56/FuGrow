@@ -1,22 +1,17 @@
-<<<<<<< HEAD
 <?php
 date_default_timezone_set('Asia/Kathmandu');
 require_once "./auth/auth.php";
 $success = false;
 
 if($_SERVER["REQUEST_METHOD"]=="POST"){
-    $email = $_POST['email'];
-    $password = $_POST['password'];
+    $email = trim($_POST['email']);
+    $password = trim($_POST['password']);
 
     $success = verify_and_login($email,$password);
 
 }
 
 ?>
-=======
-
-
->>>>>>> e168fa015af0e4c4ebbb282dfb2b5a760985c862
 
 <!DOCTYPE html>
 <html lang="en">
