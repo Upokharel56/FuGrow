@@ -1,3 +1,12 @@
+<?php
+//require_once "./auth/signup.php";
+
+
+?>
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -102,7 +111,7 @@
             }
 
             // Uncomment the following line to submit the form:
-            // signupForm.submit();
+            signupForm.submit();
             alert('Sign up successfull!');
         });
 

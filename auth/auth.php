@@ -12,9 +12,8 @@ function only_auth()
     }
 }
 
-function verify_auth($email, $password)
+function user_exists($email)
 {
-    $conn = new mysqli('localhost', 'username', 'password', 'database');
 
     $stmt = $conn->prepare("SELECT * FROM users WHERE email = ?");
     $stmt->bind_param("s", $email);
@@ -22,32 +21,32 @@ function verify_auth($email, $password)
     $result = $stmt->get_result();
 
     if ($result->num_rows > 0) {
-        $user = $result->fetch_assoc();
-
-        if (password_verify($password, $user['password'])) {
-            return $user;       }
+//        $user = $result->fetch_assoc();
+        return true;
     }
     return false;
 }
 
 function verify_and_login($email,$password)
 {
-    $user = verify_auth($email, $password);
+    $user = user_exists($email, $password);
     if ($user) {
         login($user);
+        return $user;
     }
+    return false;
 }
-{
 
-}
 
 
 function login($user)
 {
     $_SESSION['user_id'] = $user['id'];
     $_SESSION['email'] = $user['email'];
-    header("Location: index.php");
-    exit();
+
+    return $user;
+//    header("Location: index.php");
+//    exit();
 }
 
 function logout()
@@ -58,3 +57,11 @@ function logout()
     exit();
 }
 
+function register_user($username, $email, $password, $conn) {
+    $role = "user"; // Default role for new users
+    $password_hash = password_hash($password, PASSWORD_BCRYPT);
+
+    $stmt = $conn->prepare("INSERT INTO users (username, email, password_hash, role, created_at, updated_at)
+                            VALUES (?, ?, ?, ?, NOW(), NOW())");
+    return $stmt->execute([$username, $email, $password_hash, $role]);
+}
