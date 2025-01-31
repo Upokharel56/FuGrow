@@ -1,7 +1,7 @@
 <?php
 date_default_timezone_set('Asia/Kathmandu');
-require_once "./auth/auth.php";
-$success = false;
+require_once "./auth/_auth.php";
+$success = '';
 
 if($_SERVER["REQUEST_METHOD"]=="POST"){
     $email = trim($_POST['email']);
@@ -55,10 +55,11 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
 
     <script src="./assets/js/toast.js"></script>
     <script>
-        <?php if($success){ ?>
-                showToast("login successful","success");
-                exit();
-         <?php   } else ?> showToast("login failed","danger");
+        <?php if($success){ 
+                echo 'showToast("login successful","success")';
+         }else {
+            echo 'showToast("login false","danger")';
+         } ?>;
 
         // Get form and input elements
         const loginForm = document.getElementById('loginForm');

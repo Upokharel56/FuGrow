@@ -1,9 +1,10 @@
 <?php
 
-global $conn;
+
 session_start();
-require_once "../config/db_conn.php";
-include('auth.php'); // Include authentication functions
+$conn = require_once "../config/_db_conn.php";
+
+include('_auth.php'); // Include authentication functions
 
 
 
