@@ -22,7 +22,7 @@
             </div>
             <div class="form-group">
                 <label for="email">Email</label>
-                <input type="email" id="email" name="email" placeholder="Enter your email" required="">
+                <input type="text" id="email" name="email" placeholder="Enter your email" required="">
                 <span class="error-message" id="emailError"></span>
             </div>
             <div class="form-group">
@@ -37,10 +37,81 @@
             </div>
             <button type="submit" class="signup-button">Sign Up</button>
             <div class="login-link">
-                <p>Already have an account? <a href="login.html">Log in</a></p>
+                <p>Already have an account? <a href="login.php">Log in</a></p>
             </div>
         </form>
     </div>
+
+    <script>
+        // Get form and input elements
+        const signupForm = document.getElementById('signupForm');
+        const nameInput = document.getElementById('name');
+        const emailInput = document.getElementById('email');
+        const passwordInput = document.getElementById('password');
+        const confirmPasswordInput = document.getElementById('confirmPassword');
+        const nameError = document.getElementById('nameError');
+        const emailError = document.getElementById('emailError');
+        const passwordError = document.getElementById('passwordError');
+        const confirmPasswordError = document.getElementById('confirmPasswordError');
+
+        // Add event listener for form submission
+        signupForm.addEventListener('submit', function(event) {
+            // Prevent default form submission
+            event.preventDefault();
+
+            // Reset error messages
+            nameError.textContent = '';
+            nameError.style.display = 'none';
+            emailError.textContent = '';
+            emailError.style.display = 'none';
+            passwordError.textContent = '';
+            passwordError.style.display = 'none';
+            confirmPasswordError.textContent = '';
+            confirmPasswordError.style.display = 'none';
+
+            // Validate name
+            const name = nameInput.value.trim();
+            if (!name) {
+                nameError.textContent = 'Please enter your full name.';
+                nameError.style.display = 'block';
+                return;
+            }
+
+            // Validate email
+            const email = emailInput.value.trim();
+            if (!email || !validateEmail(email)) {
+                emailError.textContent = 'Please enter a valid email address.';
+                emailError.style.display = 'block';
+                return;
+            }
+
+            // Validate password
+            const password = passwordInput.value.trim();
+            if (!password || password.length < 6) {
+                passwordError.textContent = 'Password must be at least 6 characters long.';
+                passwordError.style.display = 'block';
+                return;
+            }
+
+            // Validate confirm password
+            const confirmPassword = confirmPasswordInput.value.trim();
+            if (password !== confirmPassword) {
+                confirmPasswordError.textContent = 'Passwords do not match.';
+                confirmPasswordError.style.display = 'block';
+                return;
+            }
+
+            // Uncomment the following line to submit the form:
+            // signupForm.submit();
+            alert('Sign up successfull!');
+        });
+
+        // Function to validate email format
+        function validateEmail(email) {
+            const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return regex.test(email);
+        }
+    </script>
 </body>
 
 </html>
