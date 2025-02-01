@@ -6,11 +6,16 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 /*---- All lazy import so that page download in client system only when redirected -----*/
 //pages
 const Home = lazy(() => import('./pages/Home'));
+const Blogs = lazy(() => import('./pages/Blogs'));
 const Login = lazy(() => import('./pages/Login'));
 const Signup = lazy(() => import('./pages/Signup'));
 
-const Dashboard = lazy(() => import('./pages/Dashboard'));
+//admin pages
 const AdminDashbord = lazy(() => import('./admin/AdminDashbord'));
+import ChatList from './chatbox/ChatList';
+import Blog from './components/blogs/Blog';
+
+const Dashboard = lazy(() => import('./pages/Dashboard'));
 
 // Layouts
 const DashboardLayout = lazy(() => import('./layouts/DashboardLayout'));
@@ -21,8 +26,8 @@ import { ToastContainer } from 'react-toastify';
 import LazyLoader from './utils/LazyLoader';
 import { AuthProvider } from './contexts/AuthContext';
 import AuthWrapper from './routes/AuthWrapper';
-import ChatList from './chatbox/ChatList';
-import Blog from './components/blogs/Blog';
+import HomeLayout from './layouts/HomeLayout';
+
 
 function App() {
   return (
@@ -34,10 +39,13 @@ function App() {
             {/* Home Pages */}
             <Route exact path='/' element={
               <Suspense fallback={<LazyLoader />}>
-                <Home />
+                <HomeLayout />
               </Suspense>
-            } />
-
+            }>
+               <Route index element={<Home />} />
+               <Route exact path='blogs' element={<Blogs/>}/>
+            </Route> {/* Home pages end */} 
+           
 
             {/* For Dashboard */}
             <Route exact path='/dasboard/' element={
@@ -61,8 +69,8 @@ function App() {
               </Suspense>
             }>
               <Route index element={<AdminDashbord />} />
-              <Route path='chat' element={<ChatList/>}/>
-              <Route path='blog' element={<Blog/>}/>
+              <Route path='chat' element={<ChatList />} />
+              <Route path='blog' element={<Blog />} />
             </Route>
 
             {/* For login */}

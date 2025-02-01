@@ -1,37 +1,11 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
-import { useAuth } from '../contexts/AuthContext';
 import Loader from '../utils/Loader';
 
 function Home() {
-    const { isAuthenticated, loading } = useAuth();
     return (
         <>
-            {loading ? <Loader /> : (
-                <div>
+            <div>
                 <div id="outer-wrapper">
-                    <header className="header">
-                        <div className="header-logo">
-                            <h2 style={{ fontSize: "13px" }}>FuGrow</h2>
-                        </div>
-                        <nav className="header-nav">
-                            <a href=""> <i className="ri-stack-fill"></i> Services</a>
-                            <a href=""> <i className="ri-service-fill"></i> Solutions</a>
-                            <a href=""><i className="ri-creative-commons-sa-fill"></i> Resources</a>
-                        </nav>
-                        {isAuthenticated ? <div className="header-btns">
-                            <button className="login">Dashboard</button>
-                        </div> :
-                            <div className="header-btns">
-                                <Link to="/login" >
-                                    <button className="login">Login</button>
-                                </Link>
-                                <a href="signup.php">
-                                    <button className="register">Register</button>
-                                </a>
-                            </div>
-                        }
-                    </header>
                     <main>
                         <div className="main-content">
                             <h6 className="hero-main-text"> Empowering Modern Agriculture </h6>
@@ -89,8 +63,7 @@ function Home() {
 
                     </div>
                 </div>
-                </div>
-            )}
+            </div>
         </>
     )
 }
