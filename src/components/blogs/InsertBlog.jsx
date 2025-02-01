@@ -1,7 +1,13 @@
 import React, { useState } from 'react'
+import customAxios from '../../utils/http';
+import handleCatchError from '../../utils/handleCatchError';
+import { useNavigate } from 'react-router-dom';
 
-function InsertBlog() {
+function InsertBlog({ setInsertModalOpen, handleAddBlog , user_id}) {
+    const navigate = useNavigate();
+    const [isLoading, setIsLoading] = useState(false);
     const [formData, setFormData] = useState({
+        user_id,
         title: "",
         content: "",
         image: null,
@@ -17,16 +23,37 @@ function InsertBlog() {
         setFormData({ ...formData, image: e.target.files[0] });
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log("Submitting Blog:", formData);
-        // Add logic to send data to API or backend
+        try {
+            setIsLoading(true);
+            console.log(formData);
+            const response = await customAxios.post("/blogs/create.php", formData);
+            if (response.data.success) {
+                const dt = await response.data.data;
+                handleAddBlog(dt)
+                setInsertModalOpen(false);
+                setIsLoading(false);
+                return;
+            }
+        } catch (error) {
+            setFormData({
+                user_id,
+                title: "",
+                content: "",
+                image: null,
+                status: "draft",
+            })
+            handleCatchError(error, navigate);
+        } finally {
+            setIsLoading(false);
+        }
     };
 
     return (
-        <div className='fixed inset-0 z-20 bg-black bg-opacity-75 flex justify-center items-center'>
-            <div className='flex mx-auto w-full justify-center'>
-                <div className='w-full border bg-white sm:max-w-xl border-indigo-400 m-4 p-4 sm:m-10'>
+        <div className='fixed inset-0 z-20 bg-black bg-opacity-75 flex justify-center items-center '>
+            <div className='flex mx-auto w-full justify-center mt-[66px] max-h-[100%]'>
+                <div className='w-full border bg-white sm:max-w-xl m-4 p-4 sm:m-10 overflow-y-auto scrollbar-thin scrollbar-thumb-indigo-200 scrollbar-track-transparent'>
                     <div className='flex justify-end'>
                         <button
                             className="close-btn text-2xl text-indigo-700 font-extrabold hover:text-red-300"
@@ -88,7 +115,6 @@ function InsertBlog() {
                                 >
                                     <option value="draft">Draft</option>
                                     <option value="published">Published</option>
-                                    <option value="archived">Archived</option>
                                 </select>
                             </div>
 

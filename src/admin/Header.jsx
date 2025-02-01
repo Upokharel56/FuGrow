@@ -50,7 +50,7 @@ const Header = () => {
 
         {/* Title */}
         <div className="text-xl font-bold text-blue-900">
-          <span className="text-indigo-800">Lunar Dashboard</span>
+          <span className="text-indigo-800">FuGrow Admin Dashboard</span>
         </div>
 
         {/* Icons and Profile */}
