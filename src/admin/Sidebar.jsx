@@ -26,7 +26,7 @@ const Sidebar = () => {
               }`
             }
           >
-            <i className="bx bx-book mr-2 text-lg" />
+            <i className="bx bx-message-dots mr-2 text-lg" />
             Chat
           </NavLink>
           <NavLink
@@ -36,7 +36,7 @@ const Sidebar = () => {
               }`
             }
           >
-            <i className="bx bxs-folder-open mr-2 text-lg" />
+            <i className="bx bx-file mr-2 text-lg" />
             Blogs
           </NavLink>
         </div>
@@ -44,16 +44,16 @@ const Sidebar = () => {
         {/* Second Section */}
         <div className="bg-white rounded-xl shadow-lg mb-6 p-4 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
           <NavLink
-            to="/role"
+            to="/admin/market"
             className={({ isActive }) =>
               `flex items-center cursor-pointer py-3 transition-all duration-300 hover:translate-x-1 ${isActive ? "text-indigo-800 font-bold" : "text-gray-600"
               }`
             }
           >
-            <i className="bx bx-male mr-2 text-2xl" />
-            Role
+            <i className="bx bx-store mr-2 text-2xl" />
+            Market Place
           </NavLink>
-
+{/* 
           <NavLink
             to="/office"
             className={({ isActive }) =>
@@ -74,7 +74,7 @@ const Sidebar = () => {
           >
             <i className="bx bx-male-female mr-2 text-2xl" />
             Person Category
-          </NavLink>
+          </NavLink> */}
 
         </div>
 

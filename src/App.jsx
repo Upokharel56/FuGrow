@@ -2,7 +2,6 @@ import React, { Suspense, lazy } from 'react';
 import './App.css';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
-
 /*---- All lazy import so that page download in client system only when redirected -----*/
 //pages
 const Home = lazy(() => import('./pages/Home'));
@@ -27,6 +26,7 @@ import LazyLoader from './utils/LazyLoader';
 import { AuthProvider } from './contexts/AuthContext';
 import AuthWrapper from './routes/AuthWrapper';
 import HomeLayout from './layouts/HomeLayout';
+import MarketPlace from './admin/MarketPlace';
 
 
 function App() {
@@ -68,9 +68,10 @@ function App() {
                 </AuthWrapper>
               </Suspense>
             }>
-              <Route index element={<AdminDashbord />} />
+              <Route index element={<Blog/>} />
               <Route path='chat' element={<ChatList />} />
               <Route path='blog' element={<Blog />} />
+              <Route path='market' element={<MarketPlace/>} />
             </Route>
 
             {/* For login */}

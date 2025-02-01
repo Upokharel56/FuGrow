@@ -1,0 +1,50 @@
+@media screen and (max-width:900px) {
+    .header nav {
+        display: none;
+    }
+    .hamburger{
+        display: block;
+    }
+}
+@media screen and (max-width:1100px) {
+    .whychooseus-row {
+        width: 100% !important;
+    }
+    .whybox{
+        width: 100% !important;
+        display: flex;
+        overflow: hidden;
+        flex-direction: column;
+    }
+    .image-why{
+        width: 100% !important;
+        display: grid;
+        place-items: center;
+    }
+    .content-why{
+        width: 100% !important;
+        margin: auto;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+}
+
+@media screen and (max-width:800px) {
+    main {
+        display: flex;
+        flex-direction: column;
+    }
+    .main-content {
+        width: 100%;
+    }
+    .main-image {
+        margin-top: 60px;
+        width: 100%;
+    }
+    .main-grid-image{
+    grid-template-columns: repeat(1, 1fr);
+
+    }
+}
